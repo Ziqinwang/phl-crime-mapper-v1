@@ -40,6 +40,9 @@ var PhlCrimeMapper = (function($) {
         }
     }
 
+    // Oh, Internet Explorer
+    $.support.cors = true;
+
     // $OPEN_DATA
     var bufferService = 'http://gis.phila.gov/ArcGIS/rest/services/Geometry/GeometryServer/buffer';
     var crimesDataService = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents/MapServer/0/query';
@@ -83,19 +86,47 @@ var PhlCrimeMapper = (function($) {
     mapAttribution.addAttribution(attribution);
 
     // $MAP_SETUP
-    if (L.Browser.touch) {  
+    if (L.Browser.touch) {
 
+        // ADD UP CONTROL
+        var upControl = L.Control.extend({
+            options: {
+                position: 'topright'
+            },
+
+            onAdd: function(map) {
+                
+                var className = 'leaflet-control-up';
+                var container = L.DomUtil.create('div', 'leaflet-control-up');
+
+                var link = L.DomUtil.create('a', className + '-link', container);
+                link.href = '#';
+                link.title = 'Go back up';
+                
+                L.DomEvent.on(link, 'click', function(evt) {
+                    L.DomEvent.stopPropagation(evt);
+                    $('html,body').animate({
+                        scrollTop: $('#smartphone-start').offset().top
+                    }, 250);       
+                })
+                
+                return container;  
+            },
+        
+        });
+        
         isTouch = true;
 
         var map = L.map('map', {
             center: new L.LatLng(39.952335,-75.163789),
             zoom: 13,
             attributionControl: false,
-            touchZoom: false,
-            dragging: false
+            touchZoom: true,
+            dragging: true
         });
 
         map.addControl(mapAttribution);
+        map.addControl(new upControl());
       
     } else {
 
@@ -117,6 +148,7 @@ var PhlCrimeMapper = (function($) {
         });
 
         map.addControl(drawControl);
+        
         map.addControl(mapAttribution);
     }
 
@@ -203,7 +235,8 @@ var PhlCrimeMapper = (function($) {
             success: function(data) { showCrimes(data); },
             error: function(jqXHR, textStatus, errorThrown) {
                 $('.loading').trigger('doneLoading');
-                alert(errorMessage);
+                alert(errorMessage + "in fetchCrimes");
+                alert(errorThrown);
                 _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchCrimes: ' + errorThrown]);
             }
         });
@@ -309,12 +342,12 @@ var PhlCrimeMapper = (function($) {
 
                 var bounds = buffer.getBounds();
 
-                map.fitBounds(bounds);                      
-                
+                map.fitBounds(bounds);
+
                 $('html,body').animate({
-                    scrollTop: $('#results').offset().top
-                }, 250);
-            }
+                        scrollTop: $('#results').offset().top
+                    }, 250);            
+        }
 
         $('#results').change(function(evt) {
         _gaq.push(['_trackEvent', 'UserInput', 'CrimeTypeToggle', evt.target.attributes[1].nodeValue]);

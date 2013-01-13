@@ -145,6 +145,35 @@ icon-map-marker {
     width: 100px;
 }
 
+.leaflet-control-up-link {
+    background-image: url(images/arrow.png)
+}
+
+.leaflet-control-up {
+	background-color: rgba(0, 0, 0, 0.25);
+	-webkit-border-radius: 7px;
+	   -moz-border-radius: 7px;
+	        border-radius: 7px;
+	padding: 5px;
+}
+
+.leaflet-control-up a {
+	background-color: rgba(255, 255, 255, 0.75);
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+	display: block;
+	margin-top: 5px;
+	width: 19px;
+	height: 19px;
+}
+
+.leaflet-control-up a:first-child{
+	margin-top: 0;
+}
+
 .loading {
     display: none;
     margin: 0 auto;
@@ -152,7 +181,7 @@ icon-map-marker {
     position: absolute;
     left: 50%;
     top: 50%;
-    background-color: white;
+    background-color: transparent;
     color: black;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -168,18 +197,10 @@ icon-map-marker {
 
 @media screen and (max-width: 600px) {
 
-    body, html, #map {
-        /*overflow-x: hidden;*/ 
-
-
+    #map {
+        height: 100%;   
     }
 
-    .mobile-btn {
-        width: 95%;
-        font-weight: bold;
-        font-size: 150%;
-    }
-        
     .mobile-dropdown {
         font-size: 115%;
         padding: 3px;
@@ -205,14 +226,10 @@ icon-map-marker {
         line-height: 20px;
     }
 
-    #smartphone-start-container {
-        /*min-height: 100%;*/
-    }
-
     #smartphone-start {
         display: block;
         width: 95%;
-        padding: 0px;
+        padding: 10px;
         vertical-align: middle;
         h1 {
             font-size: 40px;
@@ -221,21 +238,13 @@ icon-map-marker {
         }            
     }
 
-    #map {
-        padding-top: 15px;   
-    }
-
     #results {
         position: relative;
         width: 100%;
-        /*height: 100%;*/
         display: block;
         padding: 0px;
         left: 0;
         top: 0;
         border: 0px;
-        /*h3 {
-            font-size: 85%;
-        } */   
     }
 }

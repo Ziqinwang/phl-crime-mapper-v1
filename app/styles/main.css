@@ -175,6 +175,39 @@ icon-map-marker {
 }
 
 /* line 148, main.scss */
+.leaflet-control-up-link {
+  background-image: url(images/arrow.png);
+}
+
+/* line 152, main.scss */
+.leaflet-control-up {
+  background-color: rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+/* line 160, main.scss */
+.leaflet-control-up a {
+  background-color: rgba(255, 255, 255, 0.75);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  display: block;
+  margin-top: 5px;
+  width: 19px;
+  height: 19px;
+}
+
+/* line 173, main.scss */
+.leaflet-control-up a:first-child {
+  margin-top: 0;
+}
+
+/* line 177, main.scss */
 .loading {
   display: none;
   margin: 0 auto;
@@ -191,37 +224,30 @@ icon-map-marker {
 }
 
 /* SMARTPHONE STYLING */
-/* line 165, main.scss */
+/* line 194, main.scss */
 #smartphone-start {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 171, main.scss */
-  body, html, #map {
-    /*overflow-x: hidden;*/
+  /* line 200, main.scss */
+  #map {
+    height: 100%;
   }
 
-  /* line 177, main.scss */
-  .mobile-btn {
-    width: 95%;
-    font-weight: bold;
-    font-size: 150%;
-  }
-
-  /* line 183, main.scss */
+  /* line 204, main.scss */
   .mobile-dropdown {
     font-size: 115%;
     padding: 3px;
   }
 
-  /* line 188, main.scss */
+  /* line 209, main.scss */
   .loading {
     background-color: black;
     color: white;
   }
 
-  /* line 193, main.scss */
+  /* line 214, main.scss */
   .mobile-form {
     background-color: white;
     -webkit-border-radius: 8px;
@@ -229,52 +255,38 @@ icon-map-marker {
     border-radius: 8px;
   }
 
-  /* line 200, main.scss */
+  /* line 221, main.scss */
   #explanation {
     display: none;
   }
 
-  /* line 204, main.scss */
+  /* line 225, main.scss */
   h3 {
     line-height: 20px;
   }
 
-  /* line 208, main.scss */
-  #smartphone-start-container {
-    /*min-height: 100%;*/
-  }
-
-  /* line 212, main.scss */
+  /* line 229, main.scss */
   #smartphone-start {
     display: block;
     width: 95%;
-    padding: 0px;
+    padding: 10px;
     vertical-align: middle;
   }
-  /* line 217, main.scss */
+  /* line 234, main.scss */
   #smartphone-start h1 {
     font-size: 40px;
     font-height: 34px;
     line-height: 34px;
   }
 
-  /* line 224, main.scss */
-  #map {
-    padding-top: 15px;
-  }
-
-  /* line 228, main.scss */
+  /* line 241, main.scss */
   #results {
     position: relative;
     width: 100%;
-    /*height: 100%;*/
     display: block;
     padding: 0px;
     left: 0;
     top: 0;
     border: 0px;
-    /*h3 {
-        font-size: 85%;
-    } */
   }
 }
