@@ -182,7 +182,7 @@ icon-map-marker {
   position: absolute;
   left: 50%;
   top: 50%;
-  background-color: white;
+  background-color: transparent;
   color: black;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;

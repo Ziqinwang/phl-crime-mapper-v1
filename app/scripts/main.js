@@ -390,45 +390,47 @@ var PhlCrimeMapper = (function($) {
 
         var long = position.coords.longitude;
         var lat = position.coords.latitude;
+
+        var requestParams = {};
+        requestParams.geometries = '';
         
-        if(isInCity(long, lat)) {
-
-            var requestParams = {};
+        if(isInCity(long, lat)) {            
             requestParams.geometries = long + ',' + lat;
-            requestParams.inSR = 4326;
-            requestParams.outSR = 4326;
-            requestParams.bufferSR = 102113
-            requestParams.distances = mobileBufferDistance;
-            requestParams.unit = 9002;
-            requestParams.unionResults = false;
-            requestParams.f = 'pjson';
-
-            var today = new Date();
-            var maxDate = formatDate(today);
-            var oneMonthAgo = new Date();
-            oneMonthAgo.setMonth(today.getMonth() - 1);
-            var minDate = formatDate(oneMonthAgo);
-            
-            $.ajax({
-                url : bufferService,
-                dataType: 'json',
-                type: 'GET',
-                data: requestParams,            
-                success: function(data) { 
-                    geometry = data.geometries[0];
-                    geometry.spatialReference = { wkid : 4326 };
-                    fetchCrimes(JSON.stringify(geometry), minDate, maxDate); 
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $('.loading').trigger('doneLoading');
-                    alert(errorMessage);
-                    _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchMobileBuffer: ' + errorThrown]);               
-                }
-            });
         } else {
-            $('.loading').trigger('doneLoading');
+            requestParams.geometries = '-75.163789,39.952335'; // City Hall
             alert(outsideCityMessage);
         }
+                   
+        requestParams.inSR = 4326;
+        requestParams.outSR = 4326;
+        requestParams.bufferSR = 102113
+        requestParams.distances = mobileBufferDistance;
+        requestParams.unit = 9002;
+        requestParams.unionResults = false;
+        requestParams.f = 'pjson';
+
+        var today = new Date();
+        var maxDate = formatDate(today);
+        var oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(today.getMonth() - 1);
+        var minDate = formatDate(oneMonthAgo);
+            
+        $.ajax({
+            url : bufferService,
+            dataType: 'json',
+            type: 'GET',
+            data: requestParams,            
+            success: function(data) { 
+                geometry = data.geometries[0];
+                geometry.spatialReference = { wkid : 4326 };
+                fetchCrimes(JSON.stringify(geometry), minDate, maxDate); 
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('.loading').trigger('doneLoading');
+                alert(errorMessage);
+                _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchMobileBuffer: ' + errorThrown]);               
+            }
+        });
     }
     
     var noGeolocationAlert = function() {
