@@ -1,0 +1,241 @@
+@mixin opaque($per) {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $per+ ")";
+    filter: alpha(opacity=$per);
+    -moz-opacity:$per/100;
+    -khtml-opacity:$per/100;
+    opacity:$per/100;
+}
+
+@mixin rounded($pixels) {
+    -webkit-border-radius: $pixels;
+    -moz-border-radius: $pixels;
+    border-radius: $pixels;
+    border: 3px solid white;
+    background-color: black;
+    padding: 20px;
+    color: white;
+    z-index: 50;
+    position: absolute;
+}
+
+html, body, #map {
+    height: 100%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: white;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+#explanation {
+    @include rounded(20px);
+    background-color: black;
+    position: relative;
+    left: 1%;
+    top: 18%;
+    position: absolute;
+    padding: 25px;
+    color: white;
+    z-index: 50;
+    width: 330px;
+}
+
+#dateSlider {
+    padding-top: 20px;
+}
+
+#results {
+    padding:20px;
+    position: relative;
+    left: 78%;
+    top: 18%;
+    background-color: black;
+    color: white;
+    width: 250px;
+    /*height: 365px;*/
+    z-index: 50;
+    @include opaque(100);
+    @include rounded(20px);
+    display: none;
+}
+
+#header {
+    position: absolute;
+    width: 400px;
+    height: 135px;
+    z-index:25;
+    color: white;
+    background-color: black;
+    @include rounded(20px);
+    top: 20px;
+    margin: 0 auto;
+    left: 75%;
+    align: center;
+}
+
+h1 {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 64px;
+    margin: 0 0 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* RESULTS TEXT COLORS THAT MATCH MARKER COLORS */
+.Homicides {
+    color: #D73027;
+}
+
+.Rapes {
+    color: #FC8D59;
+}
+
+.Robberies {
+    color: #99d594;
+}
+
+.Aggravated {
+    color: #91BFDB;
+}
+
+.Burglaries {
+    color: #4575B4; 
+}
+
+.Thefts {
+    color: #8856A7;
+}
+
+.ui-rangeSlider-label-value {
+    color: black;
+}
+
+.leaflet-popup-content-wrapper {
+    background: black;
+}
+
+.leaflet-popup-tip {
+    background: black;
+}
+
+.leaflet-popup-content {
+    color: white;
+    font-size: 14px;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    padding: 8px 6px 0 0;
+}
+
+icon-map-marker {
+    height: 180px;
+    width: 100px;
+}
+
+.loading {
+    display: none;
+    margin: 0 auto;
+    z-index: 100;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: white;
+    color: black;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding: 3px;
+}
+
+/* SMARTPHONE STYLING */
+
+#smartphone-start {
+    display:none;
+}
+
+@media screen and (max-width: 600px) {
+
+    body, html, #map {
+        /*overflow-x: hidden;*/ 
+
+
+    }
+
+    .mobile-btn {
+        width: 95%;
+        font-weight: bold;
+        font-size: 150%;
+    }
+        
+    .mobile-dropdown {
+        font-size: 115%;
+        padding: 3px;
+    }
+
+    .loading {
+        background-color: black;
+        color: white;
+    }
+
+    .mobile-form {
+        background-color: white;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+    }
+
+    #explanation {
+        display: none;
+    }
+
+    h3 {
+        line-height: 20px;
+    }
+
+    #smartphone-start-container {
+        /*min-height: 100%;*/
+    }
+
+    #smartphone-start {
+        display: block;
+        width: 95%;
+        padding: 0px;
+        vertical-align: middle;
+        h1 {
+            font-size: 40px;
+            font-height: 34px;
+            line-height: 34px;
+        }            
+    }
+
+    #map {
+        padding-top: 15px;   
+    }
+
+    #results {
+        position: relative;
+        width: 100%;
+        /*height: 100%;*/
+        display: block;
+        padding: 0px;
+        left: 0;
+        top: 0;
+        border: 0px;
+        /*h3 {
+            font-size: 85%;
+        } */   
+    }
+}
