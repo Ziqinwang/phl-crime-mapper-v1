@@ -229,14 +229,13 @@ var PhlCrimeMapper = (function($) {
 
         $.ajax({
             url : url,
-            dataType: 'json',
+            dataType: 'jsonp',
             type: requestType,
             data: requestParams,
             success: function(data) { showCrimes(data); },
             error: function(jqXHR, textStatus, errorThrown) {
                 $('.loading').trigger('doneLoading');
-                alert(errorMessage + "in fetchCrimes");
-                alert(errorThrown);
+                alert(errorMessage);
                 _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchCrimes: ' + errorThrown]);
             }
         });
@@ -399,7 +398,7 @@ var PhlCrimeMapper = (function($) {
 
         $.ajax({
             url: url,
-            dataType: 'json',
+            dataType: 'jsonp',
             data: requestParams,
             async: false,
             success: function(data) {
@@ -450,7 +449,7 @@ var PhlCrimeMapper = (function($) {
             
         $.ajax({
             url : bufferService,
-            dataType: 'json',
+            dataType: 'jsonp',
             type: 'GET',
             data: requestParams,            
             success: function(data) { 
