@@ -1,7 +1,7 @@
 PHL Crime Mapper
 ================
 
-[This application](http://www.phlcrimemapper.com) allows you to access [the Part I Philadelphia crimes data](http://opendataphilly.org/opendata/resource/215/philadelphia-police-part-one-crime-incidents) released by the Philadelphia Police Department in December of 2012. Users will have a different experience depending on if they are on a smartphone, tablet or desktop/laptop computer.  
+[This application](http://www.phlcrimemapper.com) allows you to access [the Philadelphia Part I crime data](http://opendataphilly.org/opendata/resource/215/philadelphia-police-part-one-crime-incidents) released by the Philadelphia Police Department in December of 2012. Users will have a different experience depending on if they are on a smartphone, tablet or desktop/laptop computer.  
 
 The laptop/desktop version allows the user to draw a polygon of the area that they are interested in for any six-month range over the last three years.  Once the crimes for that area are shown, the user can then show/hide the different types of crimes as they wish.  
 
