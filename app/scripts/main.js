@@ -173,6 +173,10 @@ var PhlCrimeMapper = (function($) {
         $('.loading').hide();
     });
 
+    $('.down').click(function() {
+        alert("Icon");
+    });
+
     map.on('draw:poly-created', function(evt) {
         _gaq.push(['_trackEvent', 'UserInput', 'PolygonDrawn', '']);
         $('.loading').trigger('loading');
@@ -268,8 +272,20 @@ var PhlCrimeMapper = (function($) {
 
         $('#results').empty();
         $('#results').show();
-        var crimeTotal = data.features.length >= 1000 ? '1000+' : data.features.length;
-        $('#results').html('<h4>There were ' + crimeTotal + ' crimes for the area you selected:</h4>');
+        var crimeTotal = data.features.length > 1000 ? '1000+' : data.features.length;
+        if (isTouch) {
+            alert("Touch results");
+            $('#results').html('<span><h4>There were ' + crimeTotal + ' crimes for the area you selected:</h4><center><i class="down icon-arrow-down"></i></center>');
+
+            $('.down').click(function() {
+                $('html,body').animate({
+                    scrollTop: $('#map').offset().top
+                    }, 250);
+            });
+         } else {
+            $('#results').html('<h4>There were ' + crimeTotal + ' crimes for the area you selected:</h4>');
+        }
+
         for (var i=0; i < data.features.length; i++) {
             var crime = data.features[i].attributes;
             crimes[crime.UCR_GENERAL].count += 1;

@@ -561,6 +561,11 @@ ul.icons li [class*=" icon-"] {
 }
 
 /* line 458, fontawesome.scss */
+.icon-arrow-down:before {
+  content: "\f063";
+}
+
+/* line 459, fontawesome.scss */
 .icon-spinner:before {
   content: "\f110";
 }
