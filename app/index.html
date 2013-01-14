@@ -59,7 +59,7 @@
 
             var today = new Date();
             var threeYearsAgo = new Date();
-            var threeMonthAgo = new Date();
+            var oneMonthAgo = new Date();
 
             $('.draggable').draggable();
 
@@ -73,8 +73,8 @@
                     max: today.setDate(today.getDate() - 2)
             },
                 defaultValues: {
-                    min: new Date(2011, 0, 1),
-                    max: new Date(2011, 2, 1)
+                    min: oneMonthAgo.setMonth(today.getMonth() - 1),
+                    max: today
             }});
 
         });
