@@ -60,7 +60,7 @@ var PhlCrimeMapper = (function($) {
     
     var mobileResultsNote = '<h4>Visit phlcrimemapper.com on a computer for additional functionality.</h4>';
 
-    var computerResultsNote = '<h4>You can also use phlcrimemapper.com from a mobile device.</h4>';
+    var computerResultsNote = '<h4>You can also use phlcrimemapper.com from your smartphone.</h4>';
 
     var noGeolocationMessage = "Sorry, we couldn't get your current location.  Please make sure that geolocation is enabled on your device.";
 
