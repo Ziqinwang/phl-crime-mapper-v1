@@ -15,6 +15,8 @@ This application is in no way affiliated with the City of Philadelphia.
 
 It is also still a work in progress.
 
+[Read more about the application](http://www.davewalk.net/post/40514610034).
+
 Future
 ======
 
