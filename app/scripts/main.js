@@ -85,6 +85,8 @@ var PhlCrimeMapper = (function($) {
 
     mapAttribution.addAttribution(attribution);
 
+
+
     // $MAP_SETUP
     if (L.Browser.touch) {
 
@@ -108,12 +110,10 @@ var PhlCrimeMapper = (function($) {
                     $('html,body').animate({
                         scrollTop: $('#smartphone-start').offset().top
                     }, 250);       
-                })
-                
+                })                
                 return container;  
             },
-        
-        });
+        });        
         
         isTouch = true;
 
@@ -143,12 +143,11 @@ var PhlCrimeMapper = (function($) {
             marker:    false,
             polygon: {
                 shapeOptions: {
-                    color: crimeAreaColor                 }
+                    color: crimeAreaColor }
             }
         });
 
-        map.addControl(drawControl);
-        
+        map.addControl(drawControl);        
         map.addControl(mapAttribution);
     }
 
@@ -214,6 +213,7 @@ var PhlCrimeMapper = (function($) {
         minDate = (!minD) ? formatDate($('#dateSlider').dateRangeSlider('min')) : minD;
         maxDate = (!maxD) ? formatDate($('#dateSlider').dateRangeSlider('max')) : maxD;
         requestType = (!minD) ? 'GET' : 'POST';
+        dataType = (requestType === 'GET') ? 'jsonp' : 'json';
 
         var requestParams = {};
         requestParams.where = 'DISPATCH_DATE>=\'' + minDate + '\' AND DISPATCH_DATE <=\'' + maxDate + '\' AND UCR_GENERAL >= 100 AND UCR_GENERAL <= 600';
@@ -229,7 +229,7 @@ var PhlCrimeMapper = (function($) {
 
         $.ajax({
             url : url,
-            dataType: 'jsonp',
+            dataType: dataType,
             type: requestType,
             data: requestParams,
             success: function(data) { showCrimes(data); },
