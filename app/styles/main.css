@@ -223,31 +223,84 @@ icon-map-marker {
   padding: 3px;
 }
 
+/* line 192, main.scss */
+.button {
+  border: 1px solid #393e40;
+  background: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white));
+  background: -webkit-linear-gradient(top, white, white);
+  background: -moz-linear-gradient(top, white, white);
+  background: -ms-linear-gradient(top, white, white);
+  background: -o-linear-gradient(top, white, white);
+  background-image: -ms-linear-gradient(top, white 0%, white 100%);
+  padding: 3px 4px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+  -moz-box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.4) 0 1px 0, inset rgba(255, 255, 255, 0.4) 0 1px 0;
+  text-shadow: #7ea4bd 0 1px 0;
+  color: #000000;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+  margin-bottom: 6px;
+  margin-left: 1px;
+}
+
+/* line 217, main.scss */
+.button:hover {
+  text-shadow: #1e5752 0 1px 0;
+  background: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(white));
+  background: -webkit-linear-gradient(top, white, white);
+  background: -moz-linear-gradient(top, white, white);
+  background: -ms-linear-gradient(top, white, white);
+  background: -o-linear-gradient(top, white, white);
+  background-image: -ms-linear-gradient(top, white 0%, white 100%);
+  color: #000000;
+}
+
+/* line 229, main.scss */
+.button:active {
+  text-shadow: #737b80 0 1px 0;
+  border: 1px solid #737b80;
+  background: #000000;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(white));
+  background: -webkit-linear-gradient(top, black, black);
+  background: -moz-linear-gradient(top, black, black);
+  background: -ms-linear-gradient(top, black, black);
+  background: -o-linear-gradient(top, black, black);
+  background-image: -ms-linear-gradient(top, black 0%, black 100%);
+  color: #ffffff;
+}
+
 /* SMARTPHONE STYLING */
-/* line 194, main.scss */
+/* line 244, main.scss */
 #smartphone-start {
   display: none;
 }
 
 @media screen and (max-width: 600px) {
-  /* line 200, main.scss */
+  /* line 250, main.scss */
   #map {
     height: 100%;
   }
 
-  /* line 204, main.scss */
+  /* line 254, main.scss */
   .mobile-dropdown {
     font-size: 115%;
     padding: 3px;
   }
 
-  /* line 209, main.scss */
+  /* line 259, main.scss */
   .loading {
     background-color: black;
     color: white;
   }
 
-  /* line 214, main.scss */
+  /* line 264, main.scss */
   .mobile-form {
     background-color: white;
     -webkit-border-radius: 8px;
@@ -255,31 +308,31 @@ icon-map-marker {
     border-radius: 8px;
   }
 
-  /* line 221, main.scss */
+  /* line 271, main.scss */
   #explanation {
     display: none;
   }
 
-  /* line 225, main.scss */
+  /* line 275, main.scss */
   h3 {
     line-height: 20px;
   }
 
-  /* line 229, main.scss */
+  /* line 279, main.scss */
   #smartphone-start {
     display: block;
     width: 95%;
     padding: 10px;
     vertical-align: middle;
   }
-  /* line 234, main.scss */
+  /* line 284, main.scss */
   #smartphone-start h1 {
     font-size: 40px;
     font-height: 34px;
     line-height: 34px;
   }
 
-  /* line 241, main.scss */
+  /* line 291, main.scss */
   #results {
     position: relative;
     width: 100%;

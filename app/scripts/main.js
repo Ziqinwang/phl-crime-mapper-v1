@@ -1,4 +1,6 @@
-var PhlCrimeMapper = (function($) {    
+var PhlCrimeMapper = PhlCrimeMapper || {};
+
+(function(PCM, $) {    
 
     // $VARIABLES
     var crimeType = function(code, name) {
@@ -136,7 +138,7 @@ var PhlCrimeMapper = (function($) {
             attributionControl: false
         });
 
-        var drawControl = new L.Control.Draw({
+        PCM.drawControl = new L.Control.Draw({
             polyline:  false,
             circle:    false,
             rectangle: false,
@@ -147,7 +149,7 @@ var PhlCrimeMapper = (function($) {
             }
         });
 
-        map.addControl(drawControl);        
+        map.addControl(PCM.drawControl);        
         map.addControl(mapAttribution);
     }
 
@@ -515,4 +517,4 @@ var PhlCrimeMapper = (function($) {
             }
         }
     }
-})(jQuery);
+})(PhlCrimeMapper, jQuery);
