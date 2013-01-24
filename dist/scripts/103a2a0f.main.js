@@ -276,7 +276,6 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         $('#results').show();
         var crimeTotal = data.features.length > 1000 ? '1000+' : data.features.length;
         if (isTouch) {
-            alert("Touch results");
             $('#results').html('<span><h4>There were ' + crimeTotal + ' crimes for the area you selected:</h4><center><i class="down icon-arrow-down"></i></center>');
 
             $('.down').click(function() {
@@ -495,8 +494,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         _gaq.push(['_trackEvent', 'Error', 'Geolocation failure', '']);
     }
 
-    return {
-        showCrimesMobile: function(distance) {
+    PCM.showCrimesMobile = function(distance) {
             
             $('.loading').trigger('loading');
 
@@ -516,5 +514,4 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
                 noGeolocationAlert();
             }
         }
-    }
 })(PhlCrimeMapper, jQuery);

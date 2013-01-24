@@ -495,8 +495,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         _gaq.push(['_trackEvent', 'Error', 'Geolocation failure', '']);
     }
 
-    return {
-        showCrimesMobile: function(distance) {
+    PCM.showCrimesMobile = function(distance) {
             
             $('.loading').trigger('loading');
 
@@ -516,5 +515,4 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
                 noGeolocationAlert();
             }
         }
-    }
 })(PhlCrimeMapper, jQuery);
