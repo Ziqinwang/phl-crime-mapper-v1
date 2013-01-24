@@ -15,12 +15,12 @@ This application is in no way affiliated with the City of Philadelphia.
 
 It is also still a work in progress.
 
-[Read more about the application](http://www.davewalk.net/post/40514610034).
+[Read more](http://www.davewalk.net/post/40514610034) [about the application](http://www.davewalk.net/post/41175514956).
 
 Future
 ======
 
-This is only the beginning!  Besides UI and optimization improvements, version 2.0 will allow users to sign-up for weekly/monthly email or SMS alerts for an area that they are interested in.  
+This is only the beginning!  Besides UI and optimization improvements, version 2.0 will allow users to sign-up for weekly/monthly email or SMS alerts for an area that they are interested in. There's a few other new features that I'm excited to introduce.  
 
 Suggestions, questions or want to get involved? Get in touch with me through Twitter ([@ddw17](http://www.twitter.com/ddw17)) or [email](mailto:daviddwalk@gmail.com?subject=I want to talk about PHL Crime Mapper!). Pull requests and new issues welcome!  
 
