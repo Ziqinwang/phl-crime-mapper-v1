@@ -179,6 +179,15 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         alert("Icon");
     });
 
+    $('#dateSlider').hover(function() {
+	$('#dateSliderHelp').toggle();
+	//alert("Hover");
+    });
+
+
+
+
+
     map.on('draw:poly-created', function(evt) {
         _gaq.push(['_trackEvent', 'UserInput', 'PolygonDrawn', '']);
         $('.loading').trigger('loading');

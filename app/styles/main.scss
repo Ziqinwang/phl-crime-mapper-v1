@@ -54,6 +54,29 @@ a {
     padding-top: 20px;
 }
 
+#dateSliderHelp {
+    display: none;
+    z-index: 100;
+    position: absolute;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    left: 25%;
+    top: 95%;
+    width: 200px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px black solid;
+}
+
+#dateSlider, #dateSliderHelp {
+	/*position: absolute;*/
+/*	top: 0;
+	left: 0;*/
+}
+
+
 #results {
     padding:20px;
     position: relative;
