@@ -1,7 +1,6 @@
 var PhlCrimeMapper = PhlCrimeMapper || {};
 
-(function(PCM, $) {    
-
+(function(PCM, $) {
     // $VARIABLES
     var crimeType = function(code, name) {
         this.code = code;
@@ -52,14 +51,14 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
     var mobileBufferDistance, phlBoundary;
 
-    var crimeAreaColor = '#FFBC00';    
+    var crimeAreaColor = '#FFBC00'
 
-    var geometry = {}; 
+    var geometry = {};
 
-    var isTouch = false; 
+    var isTouch = false;
 
     var maxResultsNote = '<h4>NOTE: Only 1000 crimes may be accessed at a time.</h4>';
-    
+
     var mobileResultsNote = '<h4>Visit phlcrimemapper.com on a computer for additional functionality.</h4>';
 
     var computerResultsNote = '<h4>You can also use phlcrimemapper.com from your smartphone.</h4>';
@@ -70,12 +69,12 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
     var errorMessage = 'There was an error and it has been reported.  Please try again later.';
 
-    var attribution = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/license/by/3.0">CC BY 3.0</a>.  Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>. <a href="http://opendataphilly.org/opendata/resource/215/philadelphia-police-part-one-crime-incidents/">Crime data</a> from Philadelphia Police Department.  Application by <a href="http://www.davewalk.net">David Walk</a>. <a href="https://github.com/davewalk/phl-crime-mapper">This application</a> is in no way affiliated with the City of Philadelphia. <a href="mailto:daviddwalk@gmail.com?subject=PHL Crime Mapper Feedback">Please send feedback</a>.';    
+    var attribution = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/license/by/3.0">CC BY 3.0</a>.  Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>. <a href="http://opendataphilly.org/opendata/resource/215/philadelphia-police-part-one-crime-incidents/">Crime data</a> from Philadelphia Police Department.  Application by <a href="http://www.davewalk.net">David Walk</a>. <a href="https://github.com/davewalk/phl-crime-mapper">This application</a> is in no way affiliated with the City of Philadelphia. <a href="mailto:daviddwalk@gmail.com?subject=PHL Crime Mapper Feedback">Please send feedback</a>.';
 
     var mapAttribution = new L.Control.Attribution({
         prefix: false,
         position: 'bottomright'
-    }); 
+    });
 
     var layer = new L.StamenTileLayer('toner');
 
@@ -87,8 +86,6 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
     mapAttribution.addAttribution(attribution);
 
-
-
     // $MAP_SETUP
     if (L.Browser.touch) {
 
@@ -99,24 +96,24 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
             },
 
             onAdd: function(map) {
-                
+
                 var className = 'leaflet-control-up';
                 var container = L.DomUtil.create('div', 'leaflet-control-up');
 
                 var link = L.DomUtil.create('a', className + '-link', container);
                 link.href = '#';
                 link.title = 'Go back up';
-                
+
                 L.DomEvent.on(link, 'click', function(evt) {
                     L.DomEvent.stopPropagation(evt);
                     $('html,body').animate({
                         scrollTop: $('#smartphone-start').offset().top
-                    }, 250);       
-                })                
-                return container;  
+                    }, 250);
+                })
+                return container;
             },
-        });        
-        
+        });
+
         isTouch = true;
 
         var map = L.map('map', {
@@ -129,7 +126,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
         map.addControl(mapAttribution);
         map.addControl(new upControl());
-      
+
     } else {
 
         var map = L.map('map', {
@@ -149,12 +146,12 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
             }
         });
 
-        map.addControl(PCM.drawControl);        
+        map.addControl(PCM.drawControl);
         map.addControl(mapAttribution);
     }
 
-    map.addLayer(layer); 
-    
+    map.addLayer(layer);
+
     // $EVENTS
     $('#dateSlider').bind('userValuesChanged', function(e, bind) {
         if (!$.isEmptyObject(geometry)) {
@@ -188,7 +185,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         var drawnBounds = drawnItems.getBounds();
 
         map.fitBounds(drawnBounds);
-        
+
         geometry.rings = [];
         var tempArray = [];
         geometry.spatialReference = {'wkid': 4326};
@@ -198,7 +195,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
             var lng = evt.poly._latlngs[i].lng;
             tempArray.push([lng, lat]);
          }
-         
+
          tempArray.push([evt.poly._latlngs[0].lng, evt.poly._latlngs[0].lat]);
          geometry.rings.push(tempArray);
          var queryGeometry = JSON.stringify(geometry);
@@ -215,7 +212,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
     var fetchCrimes = function(bufferGeometry, minD, maxD) {
         var minDate, maxDate, requestType;
-        
+
         minDate = (!minD) ? formatDate($('#dateSlider').dateRangeSlider('min')) : minD;
         maxDate = (!maxD) ? formatDate($('#dateSlider').dateRangeSlider('max')) : maxD;
         requestType = (!minD) ? 'GET' : 'POST';
@@ -224,13 +221,13 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         var requestParams = {};
         requestParams.where = 'DISPATCH_DATE>=\'' + minDate + '\' AND DISPATCH_DATE <=\'' + maxDate + '\' AND UCR_GENERAL >= 100 AND UCR_GENERAL <= 600';
         requestParams.geometry = bufferGeometry;
-        requestParams.outFields = 'DISPATCH_DATE,DISPATCH_TIME,TEXT_GENERAL_CODE,HOUR,POINT_X,POINT_Y,UCR_GENERAL,LOCATION_BLOCK';
+        requestParams.outFields = 'DISPATCH_DATE,DISPATCH_TIME,TEXT_GENERAL_CODE,UCR_GENERAL,LOCATION_BLOCK';
         requestParams.geometryType = 'esriGeometryPolygon';
         requestParams.spatialRel = 'esriSpatialRelContains';
         requestParams.inSR = 4326;
         requestParams.outSR = 4326;
         requestParams.f = 'pjson';
-    
+
         var url = crimesDataService;
 
         $.ajax({
@@ -245,7 +242,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
                 _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchCrimes: ' + errorThrown]);
             }
         });
-    };    
+    };
 
     map.addLayer(drawnItems);
 
@@ -257,7 +254,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
                 iconAnchor: [10, 28],
                 popupAnchor: [1, -25]
             });
- 
+
             crimeType.layer = new L.LayerGroup();
         }
     });
@@ -265,7 +262,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
     var showCrimes = function(data) {
         if (!data.features) {
             $('.loading').trigger('doneLoading');
-            alert(errorMessage);           
+            alert(errorMessage);
             _gaq.push(['_trackEvent', 'Error', 'Request error', data.error.message + ': '+ data.error.details[0]]);
         }
 
@@ -292,10 +289,10 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
             var crime = data.features[i].attributes;
             crimes[crime.UCR_GENERAL].count += 1;
             var popUpContent = '<h4>' + crime.TEXT_GENERAL_CODE + '</h4><h5>DATE: ' + crime.DISPATCH_DATE + '<br />TIME: ' + crime.DISPATCH_TIME + '<br />' + crime.LOCATION_BLOCK + '</h5>';
-            var marker = L.marker([crime.POINT_Y, crime.POINT_X], {icon: crimes[crime.UCR_GENERAL].icon, title: crime.TEXT_GENERAL_CODE}).bindPopup(popUpContent); 
+            var marker = L.marker([data.features[i].geometry.y, data.features[i].geometry.x], {icon: crimes[crime.UCR_GENERAL].icon, title: crime.TEXT_GENERAL_CODE}).bindPopup(popUpContent);
 
-            crimes[crime.UCR_GENERAL].layer.addLayer(marker); 
-        } 
+            crimes[crime.UCR_GENERAL].layer.addLayer(marker);
+        }
 
         $.each(crimes, function(index, crime) {
             if (!$.isFunction(crime)) {
@@ -319,14 +316,14 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
                 $('#results').append($checkbox);
                 $('#results').append(label);
-           
+
                 $('.loading').trigger('doneLoading');
-                
+
                 if (crime.visible) {
                     map.addLayer(crime.layer);
-                } 
+                }
              }
-       }); 
+       });
 
         $('#results').append(maxResultsNote);
            if (!isTouch) {
@@ -336,23 +333,23 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
            if (isTouch) {
 
                $('#results').append(mobileResultsNote);
-      
+
                bufferedArea = geometry.rings[0];
                var bufferedArray = [];
 
                if (bufferedAreaPolygon) {
                    bufferedAreaPolygon.clearLayers();
                 }
-               
+
                 for (i = 0; i < bufferedArea.length; i++) {
                     bufferedArray.push([bufferedArea[i][1], bufferedArea[i][0]]);
                 }
-       
+
                 var buffer = L.polygon(bufferedArray,
                                        { color: crimeAreaColor,
                                          width: 5,
                                          clickable: false
-                                        }                 
+                                        }
                 ).addTo(bufferedAreaPolygon);
 
                 bufferedAreaPolygon.addTo(map);
@@ -363,12 +360,12 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
                 $('html,body').animate({
                         scrollTop: $('#results').offset().top
-                    }, 250);            
+                    }, 250);
         }
 
         $('#results').change(function(evt) {
         _gaq.push(['_trackEvent', 'UserInput', 'CrimeTypeToggle', evt.target.attributes[1].nodeValue]);
-        updateVisibleLayers()    
+        updateVisibleLayers()
         });
 
         var updateVisibleLayers = function() {
@@ -383,7 +380,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
                 }
             });
 
-            refreshLayers();        
+            refreshLayers();
         }
 
         var refreshLayers = function() {
@@ -433,7 +430,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
             }
         });
 
-        return inCity;      
+        return inCity;
     }
 
     var fetchMobileBuffer = function(position) {
@@ -443,14 +440,14 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
         var requestParams = {};
         requestParams.geometries = '';
-        
-        if(isInCity(long, lat)) {            
+
+        if(isInCity(long, lat)) {
             requestParams.geometries = long + ',' + lat;
         } else {
             requestParams.geometries = '-75.163789,39.952335'; // City Hall
             alert(outsideCityMessage);
         }
-                   
+
         requestParams.inSR = 4326;
         requestParams.outSR = 4326;
         requestParams.bufferSR = 102113
@@ -464,31 +461,31 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         var oneMonthAgo = new Date();
         oneMonthAgo.setMonth(today.getMonth() - 1);
         var minDate = formatDate(oneMonthAgo);
-            
+
         $.ajax({
             url : bufferService,
             dataType: 'jsonp',
             type: 'GET',
-            data: requestParams,            
-            success: function(data) { 
+            data: requestParams,
+            success: function(data) {
                 geometry = data.geometries[0];
                 geometry.spatialReference = { wkid : 4326 };
-                fetchCrimes(JSON.stringify(geometry), minDate, maxDate); 
+                fetchCrimes(JSON.stringify(geometry), minDate, maxDate);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 $('.loading').trigger('doneLoading');
                 alert(errorMessage);
-                _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchMobileBuffer: ' + errorThrown]);               
+                _gaq.push(['_trackEvent', 'Error', 'Ajax error', 'In fetchMobileBuffer: ' + errorThrown]);
             }
         });
     }
-    
+
     var noGeolocationAlert = function() {
         alert(noGeolocationMessage);
         $('.loading').trigger('doneLoading');
         _gaq.push(['_trackEvent', 'Error', 'Geolocation failure', '']);
     }
-        
+
     var currentPositionError = function() {
         noGeolocationAlert();
         $('.loading').trigger('doneLoading');
@@ -496,7 +493,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
     }
 
     PCM.showCrimesMobile = function(distance) {
-            
+
             $('.loading').trigger('loading');
 
             mobileBufferDistance = distance;
@@ -504,8 +501,8 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
             if (window.navigator.geolocation) {
 
-                navigator.geolocation.getCurrentPosition(fetchMobileBuffer, 
-                                                         currentPositionError, 
+                navigator.geolocation.getCurrentPosition(fetchMobileBuffer,
+                                                         currentPositionError,
                                                          { enableHighAccuracy : true,
                                                            maximumAge: 0,
                                                            timeout: 2000
