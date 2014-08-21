@@ -1,0 +1,32 @@
+{
+  "name": "phl-crime-mapper",
+  "version": "1.0.0",
+  "description": "An application that allows you to draw an area and view the Part I (serious) crimes in that region over the last three years",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PHL-Crime-Mapper/phl-crime-mapper.git"
+  },
+  "keywords": [
+    "crime",
+    "Philly",
+    "Philadelphia",
+    "civic",
+    "tech",
+    "open",
+    "data"
+  ],
+  "author": "Dave Walk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PHL-Crime-Mapper/phl-crime-mapper/issues"
+  },
+  "homepage": "https://github.com/PHL-Crime-Mapper/phl-crime-mapper",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-sass": "^0.7.3"
+  }
+}
