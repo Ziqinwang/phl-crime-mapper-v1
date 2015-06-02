@@ -219,7 +219,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         dataType = (requestType === 'GET') ? 'jsonp' : 'json';
 
         var requestParams = {};
-        requestParams.where = 'DISPATCH_DATE>=\'' + minDate + '\' AND DISPATCH_DATE <=\'' + maxDate + '\' AND UCR_GENERAL >= 100 AND UCR_GENERAL <= 600';
+        requestParams.where = 'DISPATCH_DATE>=\'' + minDate + '\' AND DISPATCH_DATE <=\'' + maxDate + '\' AND UCR_GENERAL >= \'100\' AND UCR_GENERAL <= \'600\'';
         requestParams.geometry = bufferGeometry;
         requestParams.outFields = 'DISPATCH_DATE,DISPATCH_TIME,TEXT_GENERAL_CODE,UCR_GENERAL,LOCATION_BLOCK';
         requestParams.geometryType = 'esriGeometryPolygon';
