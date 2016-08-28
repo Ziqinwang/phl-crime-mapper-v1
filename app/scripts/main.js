@@ -46,7 +46,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
 
     // $OPEN_DATA
     var bufferService = 'http://gis.phila.gov/ArcGIS/rest/services/Geometry/GeometryServer/buffer';
-    var crimesDataService = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents/MapServer/0/query';
+    var crimesDataService = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2/MapServer/0/query';
     var relationService = 'http://gis.phila.gov/ArcGIS/rest/services/Geometry/GeometryServer/relation';
 
     var mobileBufferDistance, phlBoundary;
@@ -219,7 +219,7 @@ var PhlCrimeMapper = PhlCrimeMapper || {};
         dataType = (requestType === 'GET') ? 'jsonp' : 'json';
 
         var requestParams = {};
-        requestParams.where = 'DISPATCH_DATE>=\'' + minDate + '\' AND DISPATCH_DATE <=\'' + maxDate + '\' AND UCR_GENERAL >= \'100\' AND UCR_GENERAL <= \'600\'';
+        requestParams.where = 'DISPATCH_DATE>=\'' + minDate + '\' AND DISPATCH_DATE <=\'' + maxDate + '\' AND UCR_GENERAL IN (\'100\', \'200\', \'300\', \'400\', \'500\', \'600\')';
         requestParams.geometry = bufferGeometry;
         requestParams.outFields = 'DISPATCH_DATE,DISPATCH_TIME,TEXT_GENERAL_CODE,UCR_GENERAL,LOCATION_BLOCK';
         requestParams.geometryType = 'esriGeometryPolygon';
